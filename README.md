@@ -10,6 +10,10 @@ It is designed as a multi-user system with strict data isolation, ensuring users
 
 ---
 
+Check out the live version of the project [here](https://document-intelligence-platform-rag-system-25iw5yso4.vercel.app/)
+
+---
+
 ## Tech Stack
 
 | Layer           | Technology                               |
