@@ -39,7 +39,15 @@ export const askQuestion = async (
     }
     const context = topChunks.map(c => c.text).join("\n\n");
 
-    const answer = await generateAnswer(context, question);
+    let answer = "";
+
+try {
+  answer = await generateAnswer(context, question);
+} catch (err) {
+  console.error("AI failed:", err);
+
+  answer = "I couldn't generate a full answer right now, but here’s the most relevant information from your document.";
+}
 
     // SAVE CHAT
     await Chat.create({
