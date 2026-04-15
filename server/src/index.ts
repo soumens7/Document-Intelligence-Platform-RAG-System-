@@ -25,23 +25,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/query", queryRoutes);
 app.use("/api/documents", documentRoutes);
 
-app.listen(5001, () => {
-  console.log("Server running on port 5001");
+const PORT = process.env.PORT || 5001;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
-// import dotenv from "dotenv";
-// dotenv.config();
-// import { connectDB } from "./config/db.js";
-// import queryRoutes from "./routes/query.js";
-// connectDB();
-
-// import express from "express";
-
-// const app = express();
-// app.use("/api/query", queryRoutes); // app crashed afetr adding this 
-// app.get("/", (req, res) => {
-//   res.send("OK");
-// });
-
-// app.listen(5001, () => {
-//   console.log("Server running on port 5001");
-// });
