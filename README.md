@@ -236,28 +236,41 @@ Key flows: 1. Document Upload → Processing Pipeline 2. Query → Retrieval →
 
 ## 📄 Document Processing Pipeline
 
-When a document is uploaded: 1. File is stored using Multer 2. Background processing is triggered (non-blocking) 3. Text is extracted:
-• PDF → pdfjs-dist
-• DOCX → mammoth 4. Text is split into chunks (~500 chars) 5. Each chunk is embedded (lightweight embedding) 6. Stored in MongoDB with:
-• userId
-• documentId
-• text
-• embedding
+When a document is uploaded:
+
+1. File is stored using Multer
+2. Background processing is triggered (non-blocking)
+3. Text is extracted:
+   • PDF → pdfjs-dist
+   • DOCX → mammoth
+4. Text is split into chunks (~500 chars)
+5. Each chunk is embedded (lightweight embedding)
+6. Stored in MongoDB with:
+   • userId
+   • documentId
+   • text
+   • embedding
 
 Processing status:
 uploaded → processing → ready / error
 
 ## 🔍 Retrieval System (RAG Pipeline)
 
-When a user asks a question: 1. Query is received with:
-• question
-• documentId
-• userId 2. System:
-• Retrieves relevant chunks using similarity logic
-• Ranks and selects top chunks 3. Context is built:
-Top N chunks → combined into context 4. AI generates answer using:
-Context + Question → Answer 5. If no relevant chunks:
-"I don't have enough information."
+When a user asks a question:
+
+1. Query is received with:
+   • question
+   • documentId
+   • userId
+2. System:
+   • Retrieves relevant chunks using similarity logic
+   • Ranks and selects top chunks
+3. Context is built:
+   Top N chunks → combined into context
+4. AI generates answer using:
+   Context + Question → Answer
+5. If no relevant chunks:
+   "I don't have enough information."
 
 ## 💬 Chat System
 
